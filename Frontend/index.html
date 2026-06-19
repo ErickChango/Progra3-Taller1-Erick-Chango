@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Inventario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Sistema de Inventario</h1>
+
+    <div class="tabs">
+        <button onclick="mostrarSeccion('productos')">Productos</button>
+        <button onclick="mostrarSeccion('categorias')">Categorías</button>
+        <button onclick="mostrarSeccion('proveedores')">Proveedores</button>
+        <button onclick="mostrarSeccion('movimientos')">Movimientos</button>
+    </div>
+
+    <!-- ======== PRODUCTOS ======== -->
+    <div id="seccion-productos" class="seccion">
+        <h2>Crear Producto</h2>
+        <input type="text"   id="nombre"      placeholder="Nombre">
+        <input type="text"   id="categoria"   placeholder="Categoría">
+        <input type="text"   id="descripcion" placeholder="Descripción">
+        <input type="number" id="precio"      placeholder="Precio">
+        <input type="number" id="stock"       placeholder="Stock">
+        <button onclick="crearProducto()">Crear</button>
+        <p id="msg-crear-producto"></p>
+
+        <hr>
+
+        <h2>Buscar Producto por ID</h2>
+        <input type="number" id="buscar-id-producto" placeholder="ID">
+        <button onclick="buscarProductoPorId()">Buscar</button>
+        <pre id="msg-buscar-producto"></pre>
+
+        <hr>
+
+        <h2>Actualizar Producto</h2>
+        <input type="number" id="upd-id-producto"          placeholder="ID a actualizar">
+        <input type="text"   id="upd-nombre"               placeholder="Nuevo nombre">
+        <input type="text"   id="upd-categoria"            placeholder="Nueva categoría">
+        <input type="text"   id="upd-descripcion"          placeholder="Nueva descripción">
+        <input type="number" id="upd-precio"               placeholder="Nuevo precio">
+        <input type="number" id="upd-stock"                placeholder="Nuevo stock">
+        <button onclick="actualizarProducto()">Actualizar</button>
+        <p id="msg-actualizar-producto"></p>
+
+        <hr>
+
+        <h2>Eliminar Producto</h2>
+        <input type="number" id="eliminar-id-producto" placeholder="ID a eliminar">
+        <button onclick="eliminarProducto()">Eliminar</button>
+        <p id="msg-eliminar-producto"></p>
+
+        <hr>
+
+        <h2>Lista de Productos</h2>
+        <button onclick="cargarProductos()">Cargar lista</button>
+        <pre id="msg-lista-productos"></pre>
+    </div>
+
+    <!-- ======== CATEGORIAS ======== -->
+    <div id="seccion-categorias" class="seccion" style="display:none">
+        <h2>Crear Categoría</h2>
+        <input type="text" id="cat-nombre"      placeholder="Nombre">
+        <input type="text" id="cat-descripcion" placeholder="Descripción">
+        <button onclick="crearCategoria()">Crear</button>
+        <p id="msg-crear-categoria"></p>
+
+        <hr>
+
+        <h2>Buscar Categoría por ID</h2>
+        <input type="number" id="buscar-id-categoria" placeholder="ID">
+        <button onclick="buscarCategoriaPorId()">Buscar</button>
+        <pre id="msg-buscar-categoria"></pre>
+
+        <hr>
+
+        <h2>Actualizar Categoría</h2>
+        <input type="number" id="upd-id-categoria"          placeholder="ID a actualizar">
+        <input type="text"   id="upd-cat-nombre"            placeholder="Nuevo nombre">
+        <input type="text"   id="upd-cat-descripcion"       placeholder="Nueva descripción">
+        <button onclick="actualizarCategoria()">Actualizar</button>
+        <p id="msg-actualizar-categoria"></p>
+
+        <hr>
+
+        <h2>Eliminar Categoría</h2>
+        <input type="number" id="eliminar-id-categoria" placeholder="ID a eliminar">
+        <button onclick="eliminarCategoria()">Eliminar</button>
+        <p id="msg-eliminar-categoria"></p>
+
+        <hr>
+
+        <h2>Lista de Categorías</h2>
+        <button onclick="cargarCategorias()">Cargar lista</button>
+        <pre id="msg-lista-categorias"></pre>
+    </div>
+
+    <!-- ======== PROVEEDORES ======== -->
+    <div id="seccion-proveedores" class="seccion" style="display:none">
+        <h2>Crear Proveedor</h2>
+        <input type="text" id="prov-nombre"    placeholder="Nombre">
+        <input type="text" id="prov-telefono"  placeholder="Teléfono">
+        <input type="text" id="prov-email"     placeholder="Email">
+        <input type="text" id="prov-direccion" placeholder="Dirección">
+        <button onclick="crearProveedor()">Crear</button>
+        <p id="msg-crear-proveedor"></p>
+
+        <hr>
+
+        <h2>Buscar Proveedor por ID</h2>
+        <input type="number" id="buscar-id-proveedor" placeholder="ID">
+        <button onclick="buscarProveedorPorId()">Buscar</button>
+        <pre id="msg-buscar-proveedor"></pre>
+
+        <hr>
+
+        <h2>Actualizar Proveedor</h2>
+        <input type="number" id="upd-id-proveedor"       placeholder="ID a actualizar">
+        <input type="text"   id="upd-prov-nombre"        placeholder="Nuevo nombre">
+        <input type="text"   id="upd-prov-telefono"      placeholder="Nuevo teléfono">
+        <input type="text"   id="upd-prov-email"         placeholder="Nuevo email">
+        <input type="text"   id="upd-prov-direccion"     placeholder="Nueva dirección">
+        <button onclick="actualizarProveedor()">Actualizar</button>
+        <p id="msg-actualizar-proveedor"></p>
+
+        <hr>
+
+        <h2>Eliminar Proveedor</h2>
+        <input type="number" id="eliminar-id-proveedor" placeholder="ID a eliminar">
+        <button onclick="eliminarProveedor()">Eliminar</button>
+        <p id="msg-eliminar-proveedor"></p>
+
+        <hr>
+
+        <h2>Lista de Proveedores</h2>
+        <button onclick="cargarProveedores()">Cargar lista</button>
+        <pre id="msg-lista-proveedores"></pre>
+    </div>
+
+    <!-- ======== MOVIMIENTOS ======== -->
+    <div id="seccion-movimientos" class="seccion" style="display:none">
+        <h2>Registrar Movimiento</h2>
+        <input type="number" id="mov-producto-id"  placeholder="ID del Producto">
+        <input type="text"   id="mov-tipo"         placeholder="Tipo (ENTRADA o SALIDA)">
+        <input type="number" id="mov-cantidad"     placeholder="Cantidad">
+        <input type="text"   id="mov-observacion"  placeholder="Observación">
+        <button onclick="crearMovimiento()">Registrar</button>
+        <p id="msg-crear-movimiento"></p>
+
+        <hr>
+
+        <h2>Buscar Movimiento por ID</h2>
+        <input type="number" id="buscar-id-movimiento" placeholder="ID">
+        <button onclick="buscarMovimientoPorId()">Buscar</button>
+        <pre id="msg-buscar-movimiento"></pre>
+
+        <hr>
+
+        <h2>Eliminar Movimiento</h2>
+        <input type="number" id="eliminar-id-movimiento" placeholder="ID a eliminar">
+        <button onclick="eliminarMovimiento()">Eliminar</button>
+        <p id="msg-eliminar-movimiento"></p>
+
+        <hr>
+
+        <h2>Lista de Movimientos</h2>
+        <button onclick="cargarMovimientos()">Cargar lista</button>
+        <pre id="msg-lista-movimientos"></pre>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
